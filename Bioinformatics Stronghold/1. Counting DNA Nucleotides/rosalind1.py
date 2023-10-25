@@ -1,4 +1,3 @@
-# counting DNA nucleotides
 d = {}
 
 seqs = input()
