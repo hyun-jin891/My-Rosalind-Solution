@@ -108,6 +108,7 @@ for i in range(len(motifs)):
     
     if flag:
         print(motif)
+        print(len(motif))
         break
             
 
