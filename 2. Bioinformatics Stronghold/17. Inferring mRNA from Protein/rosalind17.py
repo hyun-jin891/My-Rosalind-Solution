@@ -15,6 +15,7 @@ case = 1
 for i in range(len(aaSeq)):
     aa = aaSeq[i]
     case *= codon_table[aa]
+    case %= 1000000
 
 print((case * 3) % 1000000)
     
