@@ -45,7 +45,6 @@ for i in range(len(ID_list)):
     url = fasta_file.get_attribute('href')
     driver.get(f"{url}")
     txt = driver.find_element(By.TAG_NAME, "pre").text
-    #time.sleep(1)
     driver.close()
     
     temp = txt.split("\n")
