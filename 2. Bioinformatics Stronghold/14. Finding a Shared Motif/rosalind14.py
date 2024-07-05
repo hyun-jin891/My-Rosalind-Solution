@@ -111,7 +111,7 @@ for i in range(len(motifs)):
         print(len(motif))
         break
             
-
+f.close()
    
         
 

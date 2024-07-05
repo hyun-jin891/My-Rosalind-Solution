@@ -70,6 +70,8 @@ res_index = search(Seq[:-1], Motifs[:-1])
 
 for i in res_index:
     print(i + 1, end=" ")
+
+f.close()
     
     
     

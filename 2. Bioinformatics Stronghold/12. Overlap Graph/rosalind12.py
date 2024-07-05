@@ -31,7 +31,8 @@ for i in range(len(FASTA_name)):
             if suffix == prefix:
                 print(FASTA_name[i], FASTA_name[j])
            
-         
+
+file.close()        
 
 
 

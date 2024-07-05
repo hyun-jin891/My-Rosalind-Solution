@@ -20,3 +20,4 @@ line = f.readline()
 k, m, n = map(int, line.split())
 
 print(probability(k, m, n))
+f.close()

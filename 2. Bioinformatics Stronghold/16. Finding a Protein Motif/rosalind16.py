@@ -105,4 +105,4 @@ while (True):
         
         print()
 
-
+f.close()

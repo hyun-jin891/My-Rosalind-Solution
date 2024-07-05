@@ -18,6 +18,7 @@ for i in range(len(aaSeq)):
     case %= 1000000
 
 print((case * 3) % 1000000)
+f.close()
     
 
 

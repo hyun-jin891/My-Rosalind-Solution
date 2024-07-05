@@ -48,4 +48,5 @@ for i in range(len(profile)):
         print(" " + str(profile[i][j]), end="")
     print()
 
+f.close()
 

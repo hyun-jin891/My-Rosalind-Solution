@@ -11,3 +11,4 @@ for i in range(len(prob)):
 
 print(2 * sum)
 
+f.close()

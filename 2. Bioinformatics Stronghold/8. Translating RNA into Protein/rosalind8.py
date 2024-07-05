@@ -16,3 +16,4 @@ f = open(file_name, 'r')
 seq = f.readline()
 
 print(translate(seq))
+f.close()

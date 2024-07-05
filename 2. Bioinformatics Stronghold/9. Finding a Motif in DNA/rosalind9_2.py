@@ -15,3 +15,5 @@ it = compiled.finditer(Seq)
 
 for i in it:
     print(i.span()[0] + 1, end= " ")
+
+f.close()

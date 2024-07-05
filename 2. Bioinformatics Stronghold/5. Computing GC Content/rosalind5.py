@@ -44,3 +44,4 @@ if last_value > max_value:
     max_ID = last_ID
 print(max_ID)
 print(max_value)
+f.close()

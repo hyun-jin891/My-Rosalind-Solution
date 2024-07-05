@@ -12,3 +12,4 @@ for i in range(len(seq1)):
         count += 1
 
 print(count)
+f.close()

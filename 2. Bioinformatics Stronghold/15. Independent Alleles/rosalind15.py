@@ -18,4 +18,5 @@ for i in range(N):
     prob -= sub_prob
 
 print(prob)
-    
+
+f.close()

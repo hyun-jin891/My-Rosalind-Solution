@@ -97,3 +97,5 @@ for i in range(len(startCodonIndex)):
 res = set(res)
 for seq in res:
     print(seq)
+
+f.close()
