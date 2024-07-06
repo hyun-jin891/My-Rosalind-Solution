@@ -21,12 +21,10 @@ res = ["" for i in range(permutation)]
 tryNum = 0
 preElementNumber = 0
 
-while tryNum <= n:
+while tryNum < n:
     tryNum += 1
-    if tryNum == n + 1:
-        elementNumber = 1
-    else:
-        elementNumber = factorial(n - (tryNum - 1)) / (n - tryNum + 1)
+
+    elementNumber = factorial(n - (tryNum - 1)) / (n - tryNum + 1)
     alreadyInvolveNum = []
     temp = 0
     for i in range(len(res)):
@@ -46,5 +44,9 @@ while tryNum <= n:
                 temp = candidateNum
                 break
     preElementNumber = elementNumber
+
+print(permutation)
+for i in range(len(res)):
+    print(res[i])
 
 f.close()
