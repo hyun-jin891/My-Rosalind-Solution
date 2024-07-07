@@ -128,6 +128,7 @@ for i in range(len(ori_intron_location)):
             if (ori_intron2.getX() >= ori_intron1.getX() and ori_intron2.getX() <= ori_intron1.getY() - 1) or (ori_intron2.getY() >= ori_intron1.getX() and ori_intron2.getY() <= ori_intron1.getY() - 1):
                 removedOriIntron.append(ori_intron2)
                 overlap_intron_location.append(ori_intron2)
+                
 new_ori_intron_location = []               
 for i in range(len(ori_intron_location)):
     if ori_intron_location[i] not in removedOriIntron:

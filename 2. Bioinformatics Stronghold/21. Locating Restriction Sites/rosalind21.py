@@ -27,8 +27,6 @@ def reversePalindrome(seq):
                 res.append((j, len(subseq)))
                 
 
-
-
 name = input()
 f = open(name, 'r')
 
