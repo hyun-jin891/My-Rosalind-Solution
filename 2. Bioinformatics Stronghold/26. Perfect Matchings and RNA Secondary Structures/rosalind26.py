@@ -27,3 +27,5 @@ for i in range(2, len(dp)):
     dp[i] = dp[i - 1] * i
 
 print(dp[AU_pair//2] * dp[GC_pair//2])
+
+f.close()

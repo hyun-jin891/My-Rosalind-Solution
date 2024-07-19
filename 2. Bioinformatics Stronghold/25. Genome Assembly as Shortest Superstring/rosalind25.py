@@ -77,7 +77,7 @@ while len(reads) > 1:
 print(reads[0])
 
                 
-        
+f.close()
         
     
                 

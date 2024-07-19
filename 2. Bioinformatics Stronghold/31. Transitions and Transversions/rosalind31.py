@@ -28,7 +28,7 @@ print(num_transition/num_transversion)
     
     
     
-
+f.close()
 
 
 

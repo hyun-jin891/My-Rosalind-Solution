@@ -92,5 +92,5 @@ for i in range(len(incorrect_reads)):
     
     print(res)
         
-
+f.close()
         

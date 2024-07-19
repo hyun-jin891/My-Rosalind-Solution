@@ -27,6 +27,6 @@ for i in range(len(permutation_list)):
             print(permutation_list[i][j], end = " ")    
         
             
-        
+f.close()      
 
 

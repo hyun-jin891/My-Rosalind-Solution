@@ -39,5 +39,5 @@ for i in range(len(GC_contents)):
 
 
 
-
+f.close()
 

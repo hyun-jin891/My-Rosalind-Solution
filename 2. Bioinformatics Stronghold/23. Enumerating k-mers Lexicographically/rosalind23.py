@@ -13,4 +13,4 @@ for i in product(alphabet, repeat=n):
     print(string)
     string = ""
 
-
+f.close()

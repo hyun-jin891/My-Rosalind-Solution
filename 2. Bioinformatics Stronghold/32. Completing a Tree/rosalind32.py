@@ -42,3 +42,4 @@ for i in range(1, n + 1):
             break
 
 print(res_edge_count)
+f.close()

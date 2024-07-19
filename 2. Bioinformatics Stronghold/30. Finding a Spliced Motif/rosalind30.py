@@ -35,3 +35,5 @@ for i in range(len(res)):
         print(res[i])
     else:
         print(res[i], end=" ")
+
+f.close()

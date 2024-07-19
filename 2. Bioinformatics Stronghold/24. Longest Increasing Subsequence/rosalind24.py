@@ -70,5 +70,5 @@ print(decreased_res)
         
     
     
-
+f.close()
     

@@ -116,3 +116,4 @@ calculate_catalan(dp, seq, 0, len(seq) - 1)
 
 print(dp[-1][1])
 
+f.close()
