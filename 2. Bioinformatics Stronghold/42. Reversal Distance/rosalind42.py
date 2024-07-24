@@ -1,94 +1,94 @@
 from collections import deque
 
-def calculate_breakpoint(seq1, seq2):
+def convertToInversionSeq(seqL):
+    res = [0] * (len(seqL)-2)
+    res = [0] + res + [11]
+    
+    for i in range(1, len(seqL) - 1):
+        res[i] = seqL.index(i)
+    
+    return res
+
+def productByInversion(iseqL, seqL1):
+    res = [0] * (len(seqL1)-2)
+    res = [0] + res + [11]
+    
+    for i in range(1, len(iseqL) - 1):
+        res[i] = iseqL[seqL1[i]]
+    
+    return res
+
+def calculate_breakpoint(seq):
     breakpoints = []
     
-    for i in range(len(seq2) - 1):
-
-        if seq1.index(seq2[i + 1]) - seq1.index(seq2[i]) != 1:
-            breakpoints.append(i + 1)
-
-    return breakpoints
+    for i in range(1, len(seq)):
+        if abs(seq[i] - seq[i - 1]) != 1:
+            breakpoints.append(i)
     
+    return breakpoints
 
-def inversion_dist(seq1, seq2):
-    seq1 = ['-'] + seq1
-    seq2 = ['-'] + seq2
-    visited_seq = set()
+def calculate_reversal_distance(seq):
     need_v = deque()
-    current_bps = calculate_breakpoint(seq1, seq2)
-
-    need_v.append((seq2, 0, len(current_bps)))
-    visited_seq.add(tuple(seq2))
-    min_bp = 100
-
+    visited = set()
+    need_v.append((seq, 0))
+    visited.add(tuple(seq))
     
     while need_v:
+        current_seq, current_inversion_count = need_v.popleft()
+
+        if current_seq == [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]:
+            return current_inversion_count
         
-        current_seq2, current_count, current_bp = need_v.popleft()
-        print(current_seq2)
-        #if min_bp < current_bp:
-         #   continue
+        current_breakpoints = calculate_breakpoint(current_seq)
         
-        current_bps = calculate_breakpoint(seq1, current_seq2)
-        
-        if current_seq2 == seq1:
-            return current_count
-            
-        
-        next_seq2 = []
+        min_breakpoint_count = len(current_breakpoints)
         next_seqs = []
-        min_bp = current_bp
         
-        for i in range(len(current_bps) - 1):
-            for j in range(i + 1, len(current_bps)):
-                next_seq2 = current_seq2[:current_bps[i]] + current_seq2[current_bps[i]:current_bps[j] + 1][::-1] + current_seq2[current_bps[j] + 1:]
-                next_bp = len(calculate_breakpoint(seq1, next_seq2))
+        for i in range(len(current_breakpoints)):
+            for j in range(i + 1, len(current_breakpoints)):
+                next_seq = current_seq[:current_breakpoints[i]] + current_seq[current_breakpoints[i]:current_breakpoints[j]][::-1] + current_seq[current_breakpoints[j]:]
                 
-                if tuple(next_seq2) in visited_seq:
+                if tuple(next_seq) in visited:
                     continue
+                next_breakpoint_count = len(calculate_breakpoint(next_seq))
                 
-                if next_bp < min_bp:
-                    min_bp = next_bp
-                    next_seqs = []
-                    next_seqs.append(next_seq2)
-                elif next_bp == min_bp:
-                    next_seqs.append(next_seq2)
-
+                if next_breakpoint_count < min_breakpoint_count:
+                    min_breakpoint_count = next_breakpoint_count
+                    next_seqs = [next_seq]
+                elif next_breakpoint_count == min_breakpoint_count:
+                    next_seqs.append(next_seq)
+        
         for i in range(len(next_seqs)):
-            need_v.append((next_seqs[i], current_count + 1, min_bp))
-            visited_seq.add(tuple(next_seqs[i]))          
-                    
-
-
+            need_v.append((next_seqs[i], current_inversion_count + 1))
+            visited.add(tuple(next_seqs[i]))           
+                
+        
+         
 name = input()
 f = open(name, 'r')
 
 seq1 = []
 seq2 = []
-
-pairs = []
-
 turn = 1
+temp = []
+final_seq = []
 
 for line in f.readlines():
-    if line[0] == '\n':
-        pairs.append([seq1, seq2])
-
+    if line[0] == "\n":
+        seq2 = convertToInversionSeq(seq2)
+        final_seq = productByInversion(seq2, seq1)
+        print(calculate_reversal_distance(final_seq), end = " ")
+        continue
     else:
-        if turn % 2 == 1:
-            seq1 = list(map(int, line[:-1].split()))
+        if turn % 2 != 1:
+            seq1 = [0] + list(map(int, line[:-1].split())) + [11]
             turn += 1
         else:
-            seq2 = list(map(int, line[:-1].split()))
+            seq2 = [0] + list(map(int, line[:-1].split())) + [11]
             turn += 1
-
-
-
-
-for i in range(len(pairs)):
-    permutation1 = pairs[i][0]
-    permutation2 = pairs[i][1]
-
-    print(inversion_dist(permutation1, permutation2), end = " ")
+            
+seq2 = convertToInversionSeq(seq2)
+final_seq = productByInversion(seq2, seq1)
+ 
+print(calculate_reversal_distance(final_seq), end = " ") 
 
