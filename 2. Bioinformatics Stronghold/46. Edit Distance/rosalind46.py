@@ -1,60 +1,3 @@
-from collections import deque
-
-def BFS_seq_graph(seq1, seq2):
-    need_v = deque()
-    visited = dict()
-    first_edit_num = 0
-    need_v.append((len(seq1) - 1, len(seq2) - 1, first_edit_num))
-    visited[(len(seq1) - 1, len(seq2) - 1)] = first_edit_num
-    
-    while need_v:
-        current_x, current_y, current_edit_n = need_v.popleft()
-        
-        
-        #print(current_x, current_y, current_edit_n)
-        
-        #print(current_x, current_y)
-        
-        if current_y <= 0 or current_x <= 0:
-            continue
-        
-        #if current_x == 0 and current_y == 1:
-        #    return current_edit_n
-        
-        
-        #if (current_x, current_y) in visited:
-         
-         #   continue
-        
-        if seq1[current_x] == seq2[current_y]:
-            if (0, 1) in visited.keys():
-                if visited[(0, 1)] <= current_edit_n:
-                    continue
-            if (current_x - 1, current_y - 1) in visited.keys():
-                if current_edit_n >= visited[(current_x - 1, current_y - 1)]:
-                    continue
-                      
-            need_v.append((current_x - 1, current_y - 1, current_edit_n))
-            visited[(current_x - 1, current_y - 1)] = current_edit_n
-                
-        else:
-            direction = [(1, 1), (1, 0), (0, 1)]
-            if (0, 1) in visited.keys():
-                if visited[(0, 1)] <= current_edit_n +1:
-                    continue
-            
-            for i in range(len(direction)):
-                next_x = current_x - direction[i][0]
-                next_y = current_y - direction[i][1]
-                
-                if (next_x, next_y) in visited.keys():
-                    if current_edit_n + 1 >= visited[(next_x, next_y)]:
-                        continue
-                need_v.append((next_x, next_y, current_edit_n + 1))
-                visited[(next_x, next_y)] = current_edit_n + 1
-    
-    return visited[(0, 1)]   
-        
 seq1 = ""
 seq2 = ""
 
@@ -75,8 +18,37 @@ for line in f.readlines():
           
 seq1 = "0" + seq1
 seq2 = "0" + seq2
-print(BFS_seq_graph(seq1, seq2))
+
+dp = [[0 for i in range(len(seq1))] for j in range(len(seq2))]
+direction = [(1, 1), (1, 0), (0, 1)]
+
+for j in range(len(seq2) - 1, -1, -1):
+    for i in range(len(seq1) - 1, -1, -1):
+        if j == len(seq2) - 1 and i == len(seq1) - 1:
+            continue
+        
+        if j == len(seq2) - 1:
+            deletion = dp[j][i + 1] + 1
+        elif i == len(seq1) - 1:
+            insertion = dp[j + 1][i] + 1
+        else:
+            if seq1[i + 1] == seq2[j + 1]:
+                substitution_or_pass = dp[j + 1][i + 1]
+            else:
+                substitution_or_pass = dp[j + 1][i + 1] + 1
+                
+            deletion = dp[j][i + 1] + 1
+            insertion = dp[j + 1][i] + 1
+
+        
+        if j == len(seq2) - 1:
+            dp[j][i] = deletion
+        elif i == len(seq1) - 1:
+            dp[j][i] = insertion
+        else:
+            dp[j][i] = min(substitution_or_pass, deletion, insertion)
+                      
+print(dp[0][0])                
 
 f.close()
-
 
