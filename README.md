@@ -5,6 +5,7 @@
 <br>
 
 * Website for Solving the Bioinformatics Algorithm Problems
+* [Rosalind](https://rosalind.info/problems/locations/)
 
 # 📂 This Repository?
 * 풀이 기록용
